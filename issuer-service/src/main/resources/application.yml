@@ -6,4 +6,4 @@ eureka:
       defaultZone: ${EUREKA_URI:http://localhost:8761/eureka}
 spring:
   application:
-    name: Issuer-Service
+    name: ISSUER-SERVICE
