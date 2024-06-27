@@ -1,7 +1,6 @@
-package com.evilcorp;
+package com.evilcorp.api;
 
 import com.github.javafaker.Faker;
-import lombok.Data;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,16 +16,18 @@ public class IssueController {
    private final Faker faker;
 
 
-    public IssueController() {
+    public IssueController(BookProvider bookProvider) {
         final List<Issue> issues = new ArrayList<>();
         this.faker = new Faker();
 
         for (int i = 0; i < 15; i++) {
             Issue issue = new Issue();
 
-            issue.setIssued(faker.date().between(setStartOfYear(),setEndOfYear()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
-            issue.setReaderId(UUID.randomUUID());
             issue.setId(UUID.randomUUID());
+            issue.setIssued(faker.date().between(setStartOfYear(),setEndOfYear()).toInstant().atZone(ZoneId.systemDefault()).toLocalDate());
+            issue.setBookId(bookProvider.getRandomBookId());
+            issue.setReaderId(UUID.randomUUID());
+
 
             issues.add(issue);
         }

@@ -1,4 +1,4 @@
-package com.evilcorp;
+package com.evilcorp.api;
 
 import lombok.Data;
 
